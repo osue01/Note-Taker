@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
+const path = require("path");
 
 // Define the GET request for '/api/notes'
 router.get("/notes", async (req, res) => {
@@ -31,7 +32,7 @@ router.post("/notes", (req, res) => {
       path.join(__dirname, "../db/db.json"),
       JSON.stringify(dbJson)
     );
-    res.json(dbJson);
+    res.json(newFeedback);
   } catch (err) {
     console.error(err);
     res.status(500).send("Error saving note to the database.");
